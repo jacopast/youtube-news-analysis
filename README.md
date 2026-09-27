@@ -1,9 +1,9 @@
-# 채널 의제 원장
+# 유튜브뉴스분석
 
 시사 유튜브·방송 프로그램이 어떤 주제를 얼마나 다뤘는지, 같은 주제와 인물을 프로그램마다 어떻게 다뤘는지 살펴보는 대시보드입니다.
 
-- **[대시보드 열기](https://jacopast.github.io/media-analysis-public/)**
-- **[회당 평균 조회수 랭킹](https://jacopast.github.io/media-analysis-public/views_ranking.html)**
+- **[대시보드 열기](https://jacopast.github.io/youtube-news-analysis/)**
+- **[회당 평균 조회수 랭킹](https://jacopast.github.io/youtube-news-analysis/views_ranking.html)**
 
 ## 수록 범위
 
