@@ -6,7 +6,8 @@
 <title>시사 채널 이슈 비교</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap">
+<meta name="color-scheme" content="light dark">
 <style>
 :root{
   --band-muted:#b5b5b5; --bg:#f3f4f6; --panel:#ffffff; --ink:#15171c; --ink2:#4a4f5a; --muted:#7a808c;
@@ -151,6 +152,81 @@ select{font:inherit;font-size:13px;padding:5px 8px;border-radius:7px;border:1px 
 .period .now{font-size:12.5px;color:var(--muted);margin-left:auto}
 @media(max-width:650px){.period{position:static}.period .now{margin-left:0;flex-basis:100%}}
 
+
+/* ===== 룩앤필: jacopast.github.io · K-Drama TV Guide와 같은 종이 톤 =====
+   Day: 따뜻한 회백 / Night: 밝은 차콜 — 시스템 설정을 따른다. 글자와 2px 선만으로 구분하고 카드 테두리는 쓰지 않는다.
+   차트 안의 이슈 색(--c-*)과 호불호 색(--cold/--hot)은 그대로 둔다. */
+:root{
+  --bg:#ecebe6; --panel:#f4f3ef; --ink:#33322f; --ink2:#5d5b56; --muted:#8a8882;
+  --rule:#b4b1a9; --grid:#dad8d1; --gap:#ecebe6; --sel:#33322f; --chip:#e3e1da;
+  --heat:#3e5c86; --heat-ink:#ffffff; --band-muted:#c2c0b9; --warn:#93591a;
+  --sans:"Gowun Batang","AppleMyungjo",serif; --mono:"Gowun Batang","AppleMyungjo",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#2c2d30; --panel:#343538; --ink:#d9d7d1; --ink2:#b3b1ab; --muted:#8e8d89;
+  --rule:#57585d; --grid:#3e3f43; --gap:#2c2d30; --sel:#d9d7d1; --chip:#3f4044;
+  --heat:#93b1d8; --heat-ink:#1e1f22; --band-muted:#5c5d61; --warn:#d9a35f;
+}}
+:root[data-theme="dark"]{
+  --bg:#2c2d30; --panel:#343538; --ink:#d9d7d1; --ink2:#b3b1ab; --muted:#8e8d89;
+  --rule:#57585d; --grid:#3e3f43; --gap:#2c2d30; --sel:#d9d7d1; --chip:#3f4044;
+  --heat:#93b1d8; --heat-ink:#1e1f22; --band-muted:#5c5d61; --warn:#d9a35f;
+}
+body{font-size:14px;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word;font-variant-numeric:tabular-nums}
+.wrap{gap:44px;padding-block:32px 72px}
+h1{font-size:17px;letter-spacing:.02em}
+h2{font-size:15px;letter-spacing:.01em}
+.lede{font-size:13px;color:var(--muted)}
+header.top{border-bottom:2px solid var(--rule);padding-bottom:12px}
+.fact .k{letter-spacing:0;font-size:12px}
+.fact .v{font-size:18px;font-weight:700}
+section.panel{background:none;border:0;border-radius:0;padding:0;gap:12px}
+.phead{border-bottom:2px solid var(--rule);padding-bottom:8px;align-items:flex-end}
+.phead p{color:var(--muted)}
+section.panel>h2:first-child{border-bottom:2px solid var(--rule);padding-bottom:8px}
+/* 버튼은 글자만: 평소엔 흐리게, 고른 것은 굵게 + 밑줄 */
+.seg{border:0;border-radius:0;gap:12px;overflow:visible}
+.seg button,.focus-bar button,.legend button,.issue-pick button,.fold-all button{font:inherit;font-size:13px;background:none;border:0;border-radius:0;padding:0;color:var(--muted);cursor:pointer}
+.seg button:hover,.focus-bar button:hover,.legend button:hover,.issue-pick button:hover,.fold-all button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:none;color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.legend button{color:var(--ink2);padding:1px 2px}
+.legend button[aria-pressed="true"]{background:none;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.focus-chip{border-radius:2px!important}
+select,#ad-search,.period select,.day-controls select{font:inherit;font-size:13px;background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--rule);border-radius:0;padding:2px 2px}
+.period{background:var(--bg);border:0;border-bottom:2px solid var(--rule);border-radius:0;padding:8px 0;top:0}
+.period label,.period .now{color:var(--muted)}
+.tip{background:var(--panel);border:1px solid var(--rule);border-radius:0;box-shadow:0 4px 18px rgba(0,0,0,.10)}
+.chip{border-radius:2px}
+.ad-category-chip{border-radius:2px}
+.day-fact{background:var(--panel);border-radius:0}
+#p-day-review{border-top:0}
+#p-day-review h2{font-size:15px}
+.day-eyebrow{color:var(--muted);letter-spacing:0;font-weight:400;font-size:12px;margin-bottom:2px}
+.day-badge{border-radius:2px}
+#day-detail{border:0;border-top:1px solid var(--rule);border-radius:0;padding:10px 0}
+details summary{font-weight:400;color:var(--ink2)}
+.ad-table a,.day-table a{color:var(--ink);text-underline-offset:3px}
+.strata{border-top:1px solid var(--grid)}
+button:focus-visible,select:focus-visible,.cell:focus-visible,tr:focus-visible{outline:2px solid var(--ink)}
+/* 접기 */
+.fold{font:inherit;font-size:12px;font-weight:400;color:var(--muted);background:none;border:0;padding:0 0 0 10px;cursor:pointer;letter-spacing:0}
+.fold:hover{color:var(--ink)}
+section.panel h2[data-fold]{cursor:pointer}
+section.panel.folded>:not(:first-child){display:none!important}
+section.panel.folded .phead>:not(:first-child),section.panel.folded .phead p{display:none!important}
+.fold-all{display:flex;gap:12px;margin-left:auto}
+@media(max-width:650px){.fold-all{margin-left:0}}
+/* 회차별 조회수 추이 (작은 그래프 여러 개) */
+.vt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 28px}
+.vt-card h3{font-size:13px;font-weight:700;margin:0 0 2px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.vt-card h3 span{font-weight:400;color:var(--muted);font-size:12px}
+.vt-card svg{width:100%;height:auto;overflow:visible}
+.vt-line{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.vt-dot{fill:var(--ink);stroke:var(--bg);stroke-width:2;cursor:pointer}
+.vt-dot:hover,.vt-dot:focus{r:5}
+.vt-avg{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.vt-empty{font-size:12px;color:var(--muted)}
+
 :root{--c-presidential:#be123c;--c-diplomacy:#fb7185;--c-judiciary:#991b1b;--c-prosecution:#f87171;--c-insurrection:#7f1d1d;--c-party_dem:#1e3a8a;--c-party_ppp:#db2777;--c-media:#f9a8d4;--c-politics_misc:#fecdd3;--c-economy:#d97706;--c-future:#059669;--c-climate:#65a30d;--c-society:#7c3aed;--c-culture:#0284c7;--c-filler:#b4b8c0;}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c-presidential:#e11d48;--c-diplomacy:#fb7185;--c-judiciary:#b91c1c;--c-prosecution:#f87171;--c-insurrection:#881337;--c-party_dem:#4f6fe8;--c-party_ppp:#ec4899;--c-media:#f9a8d4;--c-politics_misc:#fda4af;--c-economy:#f59e0b;--c-future:#10b981;--c-climate:#84cc16;--c-society:#8b5cf6;--c-culture:#0ea5e9;--c-filler:#5b606b;}}
 :root[data-theme="dark"]{--c-presidential:#e11d48;--c-diplomacy:#fb7185;--c-judiciary:#b91c1c;--c-prosecution:#f87171;--c-insurrection:#881337;--c-party_dem:#4f6fe8;--c-party_ppp:#ec4899;--c-media:#f9a8d4;--c-politics_misc:#fda4af;--c-economy:#f59e0b;--c-future:#10b981;--c-climate:#84cc16;--c-society:#8b5cf6;--c-culture:#0ea5e9;--c-filler:#5b606b;}
@@ -171,6 +247,7 @@ select{font:inherit;font-size:13px;padding:5px 8px;border-radius:7px;border:1px 
     <label for="period-from">기간</label><select id="period-from"></select><span class="dim">~</span><select id="period-to" aria-label="기간 끝 주"></select>
     <div class="seg" role="group" aria-label="빠른 기간 선택"><button data-recent="1">최근 1주</button><button data-recent="4">최근 4주</button><button data-recent="0">전체</button></div>
     <span class="now" id="period-now"></span>
+    <span class="fold-all"><button id="fold-all" type="button">모두 접기</button><button id="unfold-all" type="button">모두 펼치기</button></span>
   </nav>
 
 <section class="panel" id="p-views">
@@ -182,6 +259,15 @@ select{font:inherit;font-size:13px;padding:5px 8px;border-radius:7px;border:1px 
     <p class="dim" style="margin:0;font-size:12px">최소 조회수는 선택한 기간의 회당 평균을 기준으로 이 차트에만 적용됩니다. 조회수 미수집 프로그램은 별도로 남겨 표시합니다.</p>
     <div class="legend" id="views-legend"></div>
     <div class="scroll"><svg id="views" role="img" aria-label="회당 평균 조회수"></svg></div>
+  </section>
+
+<section class="panel" id="p-views-trend">
+    <div class="phead">
+      <div><h2>회차별 조회수 추이</h2>
+        <p>채널마다 방송한 날의 풀영상 조회수를 이었습니다. 점선은 그 채널의 기간 평균입니다. '채널별 축척'은 채널마다 세로 축이 달라 흐름을 보기 좋고, '같은 축척'은 채널끼리 크기를 바로 비교합니다. 조회수는 방송 7일 이상 지난 뒤 수집한 누적값이며 수집 시점이 회차마다 조금씩 다릅니다. 점을 누르면 영상이 열립니다.</p></div>
+      <div class="seg" role="group" aria-label="조회수 추이 축척"><button id="vt-own" aria-pressed="true">채널별 축척</button><button id="vt-same" aria-pressed="false">같은 축척</button></div>
+    </div>
+    <div class="vt-grid" id="views-trend"></div>
   </section>
 
 <section class="panel" id="p-attn">
@@ -209,7 +295,7 @@ select{font:inherit;font-size:13px;padding:5px 8px;border-radius:7px;border:1px 
 <section class="panel" id="p-people">
     <div class="phead">
       <div><h2>누가 누구를 얼마나 불렀나</h2>
-        <p>숫자는 방송 100분당 호명 횟수입니다(수집 기간 합). <b>파랑은 긍정, 빨강은 부정</b>이며 검수된 인물 평가가 한쪽으로 우세할수록 진해집니다. 정책·발언·행동의 공로와 책임을 그 사람에게 돌리는 평가도 포함합니다. 칸을 누르면 원문과 판정 이유를 볼 수 있습니다.</p></div>
+        <p>숫자는 방송 100분당 호명 횟수입니다(선택 기간 합). <b>파랑은 긍정, 빨강은 부정</b>이며 검수된 인물 평가가 한쪽으로 우세할수록 진해집니다. 정책·발언·행동의 공로와 책임을 그 사람에게 돌리는 평가도 포함합니다. 칸을 누르면 원문과 판정 이유를 볼 수 있습니다.</p></div>
     </div>
     <div class="scroll"><table class="mx" id="people" aria-label="인물과 프로그램별 호명 빈도 및 호불호"></table></div>
     <div class="ramp" id="people-ramp"></div>
@@ -1392,11 +1478,85 @@ $("#issue-sel").onchange = e => {
   state.focus = new Set([e.target.value]);
   select(e.target.value);
 };
-$("#views-min").onchange = e => { state.minViews = +e.target.value; renderViews(); };
+
+// ---------- 0-1. 회차별 조회수 추이 (채널별 작은 그래프) ----------
+const vtState = {same: false};
+function renderViewsTrend() {
+  const box = $("#views-trend"); box.innerHTML = "";
+  const list = programs.filter(p => viewedEps(p.program_id).length && viewsOf(p.program_id) >= state.minViews);
+  const W = 260, H = 104, padL = 4, padR = 4, top = 16, bot = 20;
+  const di = Object.fromEntries(days.map((d, i) => [d.date, i]));
+  const sx = i => padL + (days.length > 1 ? i / (days.length - 1) : .5) * (W - padL - padR);
+  const globalMax = Math.max(...list.map(p => Math.max(...viewedEps(p.program_id).map(e => +e.views))), 1);
+  for (const p of list) {
+    const es = viewedEps(p.program_id).filter(e => di[e.date] !== undefined).sort((a, b) => a.date < b.date ? -1 : 1);
+    const avg = viewsOf(p.program_id);
+    const card = document.createElement("div"); card.className = "vt-card";
+    card.innerHTML = `<h3>${esc(p.name)}<span>평균 ${fmtViews(Math.round(avg))} · ${es.length}회</span></h3>`;
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", `${p.name} 회차별 조회수`);
+    // 같은 축척: 0부터 전 채널 최댓값까지. 채널별 축척: 그 채널의 최저~최고(흐름을 보기 위함, 0 기준 아님)
+    const vals = es.map(e => +e.views);
+    const max = vtState.same ? globalMax : Math.max(...vals, 1);
+    const lo = vtState.same ? 0 : Math.min(...vals);
+    const min = vtState.same ? 0 : (max - lo < 1 ? lo * 0.9 : lo - (max - lo) * 0.08);
+    const sy = v => top + (1 - (v - min) / (max - min || 1)) * (H - top - bot);
+    el("line", {x1: padL, x2: W - padR, y1: sy(min), y2: sy(min), class: "gridline"}, svg);
+    el("line", {x1: padL, x2: W - padR, y1: sy(max), y2: sy(max), class: "gridline"}, svg);
+    el("text", {x: padL, y: top - 5, class: "axis"}, svg).textContent = `윗선 ${fmtViews(Math.round(max))}`;
+    el("text", {x: W - padR, y: top - 5, class: "axis", "text-anchor": "end"}, svg).textContent = vtState.same ? "아래선 0" : `아래선 ${fmtViews(Math.round(lo))}`;
+    el("line", {x1: padL, x2: W - padR, y1: sy(avg), y2: sy(avg), class: "vt-avg"}, svg);
+    const first = days[0], last = days[days.length - 1];
+    el("text", {x: padL, y: H - 5, class: "axis"}, svg).textContent = first.label.replace(/\(.\)/, "");
+    el("text", {x: W - padR, y: H - 5, class: "axis", "text-anchor": "end"}, svg).textContent = last.label.replace(/\(.\)/, "");
+    // 수집한 방송일 사이에 회차가 3일 넘게 비면 선을 끊는다(휴방·미수집 구간을 이어 그리지 않음)
+    let run = [];
+    const flush = () => { if (run.length > 1) el("polyline", {class: "vt-line", points: run.map(e => `${sx(di[e.date])},${sy(+e.views)}`).join(" ")}, svg); run = []; };
+    es.forEach((e, k) => { if (k && di[e.date] - di[es[k - 1].date] > 3) flush(); run.push(e); });
+    flush();
+    for (const e of es) {
+      const a = el("a", {href: `https://www.youtube.com/watch?v=${e.video_id}`, target: "_blank", rel: "noopener"}, svg);
+      const c = el("circle", {cx: sx(di[e.date]), cy: sy(+e.views), r: 3.5, class: "vt-dot", tabindex: 0}, a);
+      const lab = days[di[e.date]].label;
+      const diff = avg ? Math.round((+e.views / avg - 1) * 100) : 0;
+      const html = `<b>${esc(p.name)}</b> ${lab}<br><span class="num">${(+e.views).toLocaleString("ko-KR")}회 (평균 대비 ${diff >= 0 ? "+" : ""}${diff}%)</span>`;
+      c.onmousemove = ev => showTip(ev, html); c.onmouseleave = hideTip;
+      c.onfocus = () => { const r = c.getBoundingClientRect(); showTip({clientX: r.right, clientY: r.bottom}, html); }; c.onblur = hideTip;
+    }
+    card.appendChild(svg); box.appendChild(card);
+  }
+  if (!list.length) box.innerHTML = '<p class="vt-empty">조건에 맞는 채널이 없습니다.</p>';
+}
+function setVT(same) { vtState.same = same; $("#vt-own").setAttribute("aria-pressed", !same); $("#vt-same").setAttribute("aria-pressed", same); renderViewsTrend(); }
+$("#vt-own").onclick = () => setVT(false); $("#vt-same").onclick = () => setVT(true);
+
+// ---------- 섹션 접기: 제목을 누르면 접고 편다. 접은 상태는 이 브라우저에만 기억한다 ----------
+function initFolds() {
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem("media-folds") || "{}"); } catch (e) {}
+  const save = () => { try { localStorage.setItem("media-folds", JSON.stringify(saved)); } catch (e) {} };
+  const panels = [...document.querySelectorAll("section.panel")];
+  panels.forEach((sec, i) => {
+    const key = sec.id || `panel-${i}`;
+    const h = sec.querySelector("h2"); if (!h) return;
+    h.dataset.fold = "1";
+    const b = document.createElement("button"); b.type = "button"; b.className = "fold";
+    h.appendChild(b);
+    const set = folded => { sec.classList.toggle("folded", folded); b.textContent = folded ? "펼치기" : "접기"; b.setAttribute("aria-expanded", !folded); saved[key] = folded; };
+    sec._fold = f => { set(f); save(); };
+    set(!!saved[key]);
+    h.addEventListener("click", ev => { if (ev.target.closest("a")) return; sec._fold(!sec.classList.contains("folded")); });
+  });
+  $("#fold-all").onclick = () => panels.forEach(s => s._fold && s._fold(true));
+  $("#unfold-all").onclick = () => panels.forEach(s => s._fold && s._fold(false));
+}
+$("#views-min").onchange = e => { state.minViews = +e.target.value; renderViews(); renderViewsTrend(); };
 initPeriod();
-renderHeader(); renderViews(); initAdProducts(); initTones(); renderNotes(); renderPeople(); renderPeopleStrata(); renderHosts(); renderSpeakers(); select(state.issue);
+renderHeader(); renderViews(); renderViewsTrend(); initAdProducts(); initTones(); renderNotes(); renderPeople(); renderPeopleStrata(); renderHosts(); renderSpeakers(); select(state.issue);
 
 initDayReview();
+initFolds();
 </script>
 
 </body>
